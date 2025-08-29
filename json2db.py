@@ -11,9 +11,9 @@ from pathlib import Path
 
 def parse_lines(fobj):
     for line in fobj:
-        platform, status, test, sub, files, note = json.loads(line)
+        platform, status, test, subtest, files, note = json.loads(line)
         files = json.dumps(files) if files else None  # also does [] -> None
-        yield (platform, status, test, sub, files, note)
+        yield (platform, status, test, subtest, files, note)
 
 
 if len(sys.argv) != 3:
@@ -34,7 +34,7 @@ with tempfile.NamedTemporaryFile(dir="/var/tmp") as tmpf:
             platform    TEXT    NOT NULL,
             status      TEXT    NOT NULL,
             test        TEXT    NOT NULL,
-            sub         TEXT,
+            subtest     TEXT,
             files       JSONB,
             note        TEXT
         )
