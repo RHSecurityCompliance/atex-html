@@ -241,6 +241,18 @@ async function fetch_into_elem(target_elem, url) {
     const response = await fetch(url);
     if (!response.ok) return;  // silently omit
     target_elem.innerHTML = await response.text();
+    // execute <script> elements inside the fetched HTML by recreating them
+    target_elem.querySelectorAll("script").forEach(orig_script => {
+        const new_script = document.createElement("script");
+        if (orig_script.src) {
+            // has src="", to be fetched
+            new_script.src = orig_script.src;
+        } else {
+            // is an inline <script>
+            new_script.textContent = orig_script.textContent;
+        }
+        orig_script.replaceWith(new_script);
+    });
     target_elem.style.removeProperty("display");
 }
 async function display_old_runs(target_elem, url) {
