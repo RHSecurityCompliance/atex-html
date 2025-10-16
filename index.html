@@ -509,7 +509,7 @@ document.addEventListener("DOMContentLoaded", on_page_load);
         <div id="filter">
             <datalist id="query_examples">
                 <option value="TRUE">All results</option>
-                <option value="status IN ('fail', 'error')">Only fail/error</option>
+                <option value="status IN ('fail', 'error', 'infra')">Only fail/error/infra</option>
                 <option value="subtest IS NULL">Only tests themselves (no subtests)</option>
             </datalist>
             <span>SELECT platform, status, test, subtest, files, note FROM results WHERE</span>
