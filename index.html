@@ -377,7 +377,7 @@ function update_results_table(where) {
         notify_clear(10000);
     } else {
         notify_info(`Returned ${rows} rows`);
-        notify_clear(3000);
+        notify_clear(1000);
     }
 }
 
@@ -485,9 +485,6 @@ async function on_page_load() {
         if (url_query && url_query == filter_form_query.value) {
             update_results_table(url_query);
         }
-
-        notify_clear(1000);
-
     } catch (error) {
         notify_error(`Caught ${error.name}: ${error.message}`);
         throw error;
