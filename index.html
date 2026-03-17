@@ -483,7 +483,10 @@ async function on_page_load() {
         // fetching results, do not auto-submit it; let the user do it when
         // edits are done
         if (url_query && url_query == filter_form_query.value) {
+            // this also clears notifications after its own messages
             update_results_table(url_query);
+        } else {
+	    notify_clear(1000);
         }
     } catch (error) {
         notify_error(`Caught ${error.name}: ${error.message}`);
