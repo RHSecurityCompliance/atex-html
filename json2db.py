@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 
-import sys
-import json
+import contextlib
 import gzip
+import json
 import lzma
 import sqlite3
-import tempfile
-import contextlib
 import subprocess
+import sys
+import tempfile
 from pathlib import Path
 
 
