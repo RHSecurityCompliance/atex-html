@@ -335,8 +335,10 @@ function update_results_table(where) {
             const files = JSON.parse(row[4]);
             if (files.length > 0) {
                 for (const file of files) {
+                    const full_path = `${path}/${file}`;
+                    const sanitized_path = full_path.split("/").map(encodeURIComponent).join("/");
                     const a = document.createElement("a");
-                    a.href = `${path}/${file}`;
+                    a.href = sanitized_path;
                     a.textContent = file;
                     td.appendChild(a);
                     td.appendChild(document.createTextNode(" "));
